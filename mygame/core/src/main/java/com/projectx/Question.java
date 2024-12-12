@@ -19,11 +19,11 @@ public class Question {
         this.answer = answer;
         this.isCorrect = isCorrect;
         this.bounds = new Rectangle(startX, startY, width, height);
-        this.velocity = new Vector2(0, -150); // Velocidade para cair na tela
+        this.velocity = new Vector2(0, -150); 
     }
 
     public void update(float deltaTime) {
-        // Atualiza a posição da resposta
+
         bounds.y += velocity.y * deltaTime;
     }
 
@@ -32,7 +32,7 @@ public class Question {
     }
 
     public boolean isOutOfScreen() {
-        // Verifica se a resposta saiu da tela
+   
         return bounds.y + bounds.height < 0;
     }
 
