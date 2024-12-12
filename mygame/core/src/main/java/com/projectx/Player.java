@@ -18,12 +18,10 @@ public class Player {
     }
 
     public void update() {
-        // Atualiza a posição do jogador com base no toque ou entrada do mouse
         if (Gdx.input.isTouched()) {
             Vector2 touchPos = new Vector2(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
             bounds.x = touchPos.x - bounds.width / 2;
 
-            // Limita o jogador dentro da tela
             if (bounds.x < 0) bounds.x = 0;
             if (bounds.x + bounds.width > Gdx.graphics.getWidth()) bounds.x = Gdx.graphics.getWidth() - bounds.width;
         }
