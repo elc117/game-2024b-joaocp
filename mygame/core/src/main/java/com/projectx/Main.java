@@ -28,19 +28,19 @@ public class Main extends ApplicationAdapter {
     public void create() {
         batch = new SpriteBatch();
 
-        // Load textures
+      
         playerTexture = new Texture("player.png");
         correctAnswerTexture = new Texture("correct.png");
         wrongAnswerTexture = new Texture("wrong.png");
 
-        // Initialize player
+  
         player = new Rectangle();
         player.x = Gdx.graphics.getWidth() / 2 - 64 / 2;
         player.y = 20;
         player.width = 64;
         player.height = 64;
 
-        // Initialize answers
+
         answerDrops = new Array<>();
         spawnTimer = 0;
         score = 0;
@@ -49,32 +49,31 @@ public class Main extends ApplicationAdapter {
 
     @Override
     public void render() {
-        // Clear screen
+  
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
 
-        // Draw question
+  
         BitmapFont font = new BitmapFont();
         font.draw(batch, currentQuestion, Gdx.graphics.getWidth() / 2 - 100, Gdx.graphics.getHeight() - 20);
 
-        // Draw player
+      
         batch.draw(playerTexture, player.x, player.y);
 
-        // Spawn answers
+     
         spawnTimer += Gdx.graphics.getDeltaTime();
         if (spawnTimer > 1) {
             spawnAnswer();
             spawnTimer = 0;
         }
 
-        // Draw and update answers
         for (AnswerDrop drop : answerDrops) {
             drop.update(Gdx.graphics.getDeltaTime());
             batch.draw(drop.texture, drop.position.x, drop.position.y);
         }
 
-        // Handle input
+     
         if (Gdx.input.isTouched()) {
             Vector2 touchPos = new Vector2(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
             player.x = touchPos.x - player.width / 2;
@@ -82,7 +81,7 @@ public class Main extends ApplicationAdapter {
 
         batch.end();
 
-        // Collision detection
+     
         Array<AnswerDrop> toRemove = new Array<>();
         for (AnswerDrop drop : answerDrops) {
             if (player.overlaps(drop.bounds)) {
